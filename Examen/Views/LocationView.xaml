@@ -1,0 +1,48 @@
+﻿<Window x:Class="examen_WPF.Views.LocationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:examen_WPF.Views"
+        mc:Ignorable="d"
+        Title="ReeksView" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox Text="{Binding NewLocationName}"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Center"
+                 Grid.Row="0" Grid.ColumnSpan="2" Margin="5" />
+        <TextBlock Text="Geselecteerde locatie" Grid.Row="0" Grid.Column="2" Margin="5" />
+        <ListBox ItemsSource="{Binding Locations}" Grid.Row="1" Grid.Column="2" Grid.RowSpan="7" DisplayMemberPath="Titel"
+                 SelectedItem="{Binding SelectedLocation}" />
+        <ListBox ItemsSource="{Binding SelectedLocation.Stocks}" DisplayMemberPath="Product.Name"
+            Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Margin="15">
+        </ListBox>
+        <StackPanel Grid.Row="5" Grid.Column="1">
+            <Button Command="{Binding}" CommandParameter="LocationToevoegen" Content="Locatie Toevoegen"  Style="{StaticResource MaterialDesignFlatLightBgButton}" />
+        </StackPanel>
+        <Button Command="{Binding}" CommandParameter="LocationVerwijderen" Content="Locatie Verwijderen" Grid.Row="7" Margin="5" />
+        <Button Command="{Binding}" CommandParameter="Bewaren" Content="Bewaren"  Grid.Row="7" Grid.Column="1" Margin="5" />
+        <Button Command="{Binding}" CommandParameter="LocationToevoegen" Content="Nieuwe Locatie"  Grid.Row="7" Grid.Column="2" Margin="5" />
+    </Grid>
+</Window>
